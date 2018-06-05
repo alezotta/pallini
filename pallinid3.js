@@ -7,14 +7,29 @@ let svg = d3.selectAll("body")
 .append("svg")
 .attr("width", width - margin)
 .attr("height", height - margin)
-.style("background", "#000000")
+.style("background", "#191919")
 
 let randomX = d3.randomUniform(innerMargin + margin, width - margin - innerMargin*2)
 let randomY = d3.randomUniform(innerMargin + margin, height - margin - innerMargin*2)
 
 let pallini = 29148
 
-for (let i = 1; i <= pallini; i++) {
+/*
+  totale 29148
+  totale gender 2887
+  male 2417
+  female 470
+  unknown gender 26261 
+  */
+
+  /* 
+   '#fdc64f' giallo
+   '#2e2d2c' nero
+   '#fcf9ef' bianco
+   '#575756' grigio
+   */
+
+for (let i = 0; i < pallini; i++) {
 
 	d3.selectAll("svg")
 	.append("ellipse")
@@ -23,12 +38,14 @@ for (let i = 1; i <= pallini; i++) {
 	.attr("rx", 2)
 	.attr("ry", 2)
 	.style("fill", function() {
-		if (i>0 & i<500) { 
-			return "#ffffff"
-		} else if (i>=500 & i<2000) { 
-			return "#dddddd"
+		if (i>0 & i<470) { 
+			return "#fdc64f"
+		} else if (i>=470 & i<2417) { 
+			return "#fcf9ef"
 		} else { 
-			return "#555555"
+			return "#575756"
 		}
 	})
+
 }
+
