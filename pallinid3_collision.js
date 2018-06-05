@@ -35,19 +35,13 @@ for (let i = 0; i < elementi; i++) {
 
 		if (distX < (spacebetween + r*2) || distY < (spacebetween + r*2)) {
 			overlapping = true
-			d3.selectAll("svg")
 
-		.append("ellipse")
-		.attr("cx", cx)
-		.attr("cy", 250)
-		.attr("rx", r/2)
-		.attr("ry", r/2)
-		.style("fill", "red")
 		} else {
 			overlapping = false
 		}
 
 	}
+
 
 	let myCircle = d3.selectAll("svg")
 
@@ -60,7 +54,6 @@ for (let i = 0; i < elementi; i++) {
 	
 
 	if (overlapping === false) {
-		d3.select("ellipse").style("fill", "white")
 	    circles.push(myCircle.node())
 	    console.log(circles.length)
 	} else { 
