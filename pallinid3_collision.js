@@ -4,7 +4,7 @@ let margin = 16
 let innerMargin = 4
 let spacebetween = 10
 
-let elementi = 50
+let elementi = 10
 let r = 20
 
 let overlapping = false
@@ -17,7 +17,7 @@ let svg = d3.selectAll("body")
 .attr("height", height - margin)
 .style("background", "#000000")
 
-for (let i = 1; i <= elementi; i++) {
+for (let i = 0; i < elementi; i++) {
 
 	let randomX = d3.randomUniform(margin + innerMargin, width - margin - innerMargin*2)()
 	let randomY = d3.randomUniform(margin + innerMargin, height - margin - innerMargin*2)()
@@ -27,13 +27,22 @@ for (let i = 1; i <= elementi; i++) {
 		let cx = circles[j].cx.baseVal.value
 		let cy = circles[j].cy.baseVal.value
 
+
 		let distX = Math.abs(randomX - cx)
 		let distY = Math.abs(randomY - cy)
 
-		console.log(distX)
+		console.log("randomX: " + randomX + " cx[j]: " + circles[j].cx.baseVal.value + " distX: " + distX)
 
 		if (distX < (spacebetween + r*2) || distY < (spacebetween + r*2)) {
 			overlapping = true
+			d3.selectAll("svg")
+
+		.append("ellipse")
+		.attr("cx", cx)
+		.attr("cy", 250)
+		.attr("rx", r/2)
+		.attr("ry", r/2)
+		.style("fill", "red")
 		} else {
 			overlapping = false
 		}
@@ -44,21 +53,20 @@ for (let i = 1; i <= elementi; i++) {
 
 	.append("ellipse")
 	.attr("cx", randomX)
-	.attr("cy", randomY)
+	.attr("cy", 250)
 	.attr("rx", r)
 	.attr("ry", r)
 	.style("fill", "white")
+	
 
 	if (overlapping === false) {
+		d3.select("ellipse").style("fill", "white")
 	    circles.push(myCircle.node())
 	    console.log(circles.length)
 	} else { 
-		//console.log("Hey there's an overlap here") 
-		//d3.select("ellipse").attr("opacity", 0.3)
+		
+		console.log("Hey there's an overlap here") 
 	}
-
-
-
 }
 
 
